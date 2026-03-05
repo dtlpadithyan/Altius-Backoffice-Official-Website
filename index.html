@@ -1,837 +1,1543 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Altius Technologies - 30 years of Title Plant Indexing expertise. High-precision data capture, AI-powered process optimization for US title companies.">
-<meta name="keywords" content="title plant indexing, title insurance, document processing, data capture, AI automation, KPO, title company services">
-<title>Altius Technologies | Title Plant Indexing &amp; AI Solutions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy: #0B1D3A;
-  --deep: #061428;
-  --gold: #C8963E;
-  --gold-light: #E8B960;
-  --slate: #1E3054;
-  --light: #F4F1EB;
-  --muted: #8A9BB5;
-  --white: #FFFFFF;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Altius Technologies - 30 years of Title Plant Indexing expertise. High-precision data capture, AI-powered process optimization for US title companies.">
+  <meta name="keywords"
+    content="title plant indexing, title insurance, document processing, data capture, AI automation, KPO, title company services">
+  <title>Altius Technologies | Title Plant Indexing &amp; AI Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B1D3A;
+      --deep: #061428;
+      --gold: #C8963E;
+      --gold-light: #E8B960;
+      --slate: #1E3054;
+      --light: #F4F1EB;
+      --muted: #8A9BB5;
+      --white: #FFFFFF;
+    }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-::selection { background: rgba(200, 150, 62, 0.25); }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--white);
-  background: var(--deep);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    ::selection {
+      background: rgba(200, 150, 62, 0.25);
+    }
 
-/* ── Animations ── */
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      background: var(--deep);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
 
-/* ── Buttons ── */
-.gold-btn {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--navy);
-  border: none;
-  padding: 14px 32px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: 'DM Sans', sans-serif;
-  letter-spacing: 0.3px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-.gold-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200, 150, 62, 0.27); }
+    /* ── Animations ── */
+    @keyframes pulse {
 
-.outline-btn {
-  background: transparent;
-  color: var(--gold);
-  border: 1.5px solid rgba(200, 150, 62, 0.33);
-  padding: 13px 30px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-family: 'DM Sans', sans-serif;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-}
-.outline-btn:hover { border-color: var(--gold); background: rgba(200, 150, 62, 0.07); }
+      0%,
+      100% {
+        opacity: 0.4;
+      }
 
-/* ── Nav ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  transition: all 0.4s;
-  padding: 20px 0;
-}
-nav.scrolled {
-  background: rgba(6, 20, 40, 0.93);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(138, 155, 181, 0.08);
-  padding: 12px 0;
-}
-.nav-inner { display: flex; justify-content: space-between; align-items: center; }
-.nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
-.nav-logo-icon {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700; font-size: 20; color: var(--navy);
-}
-.nav-logo-text span:first-child { font-weight: 700; font-size: 17px; letter-spacing: 1.5px; color: var(--white); display: block; }
-.nav-logo-text span:last-child { font-size: 9px; letter-spacing: 3px; color: var(--muted); margin-top: -2px; display: block; }
-.nav-right { display: flex; align-items: center; gap: 36px; }
-.nav-links { display: flex; gap: 32px; }
-.nav-link {
-  color: var(--muted); text-decoration: none; font-size: 14px;
-  font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s;
-}
-.nav-link:hover { color: var(--gold); }
-.nav-cta { padding: 10px 24px !important; font-size: 13px !important; }
+      50% {
+        opacity: 1;
+      }
+    }
 
-/* Mobile menu */
-.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
-.mobile-menu {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(6, 20, 40, 0.97); z-index: 99;
-  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a { color: var(--white); text-decoration: none; font-size: 22px; font-weight: 500; }
+    @keyframes shimmer {
+      0% {
+        background-position: -200% center;
+      }
 
-@media (max-width: 768px) {
-  .nav-links, .nav-cta-wrap { display: none !important; }
-  .hamburger { display: block; z-index: 101; }
-  .container { padding: 0 20px; }
-}
+      100% {
+        background-position: 200% center;
+      }
+    }
 
-/* ── Hero ── */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  position: relative; overflow: hidden;
-  background: linear-gradient(165deg, var(--deep) 0%, var(--navy) 40%, var(--slate) 100%);
-}
-.hero-grid {
-  position: absolute; inset: 0; opacity: 0.04;
-  background-image:
-    repeating-linear-gradient(90deg, var(--white) 0, var(--white) 1px, transparent 1px, transparent 5.5%),
-    repeating-linear-gradient(0deg, var(--white) 0, var(--white) 1px, transparent 1px, transparent 9%);
-}
-.hero-line-left {
-  position: absolute; top: 0; left: 10%; width: 1px; height: 40%;
-  background: linear-gradient(to bottom, transparent, rgba(200, 150, 62, 0.27), transparent);
-}
-.hero-line-right {
-  position: absolute; bottom: 0; right: 15%; width: 1px; height: 35%;
-  background: linear-gradient(to top, transparent, rgba(200, 150, 62, 0.2), transparent);
-}
-.hero-content { position: relative; z-index: 2; padding-top: 120px; padding-bottom: 80px; }
-.hero-inner { max-width: 780px; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(200, 150, 62, 0.08); border: 1px solid rgba(200, 150, 62, 0.2);
-  border-radius: 50px; padding: 8px 20px; margin-bottom: 32px;
-  font-size: 13px; color: var(--gold-light); font-weight: 500;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold); animation: pulse 2s infinite;
-}
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(38px, 5.5vw, 64px);
-  font-weight: 700; line-height: 1.1; margin-bottom: 28px;
-}
-.hero-shimmer {
-  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-  background-size: 200% auto;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
-}
-.hero p { font-size: 19px; line-height: 1.7; color: var(--muted); max-width: 600px; margin-bottom: 44px; }
-.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(36px);
+      }
 
-/* Stats strip */
-.stats-strip {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-  margin-top: 80px; background: rgba(138, 155, 181, 0.08); border-radius: 12px; overflow: hidden;
-}
-.stat-item {
-  background: rgba(11, 29, 58, 0.8); padding: 28px 24px; text-align: center;
-}
-.stat-num {
-  font-family: 'Playfair Display', serif; font-size: 36px;
-  font-weight: 700; color: var(--gold);
-}
-.stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; letter-spacing: 0.5px; }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-@media (max-width: 640px) {
-  .stats-strip { grid-template-columns: repeat(2, 1fr); }
-}
+    .fade-in {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
 
-/* ── Section Headers ── */
-.section-tag {
-  font-size: 12px; letter-spacing: 4px; color: var(--gold);
-  font-weight: 600; margin-bottom: 12px; text-transform: uppercase;
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(30px, 4vw, 44px);
-  font-weight: 700; margin-bottom: 18px;
-}
-.section-desc { color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-/* ── Services ── */
-.services { padding: 100px 0; background: var(--deep); }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-.service-card {
-  background: linear-gradient(160deg, rgba(30, 48, 84, 0.53), rgba(11, 29, 58, 0.6));
-  border: 1px solid rgba(138, 155, 181, 0.09);
-  border-radius: 16px; padding: 40px; position: relative; overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
-}
-.service-card:hover { border-color: rgba(200, 150, 62, 0.25); transform: translateY(-4px); }
-.service-card-line {
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(200, 150, 62, 0.4), transparent);
-}
-.service-icon { margin-bottom: 24px; }
-.service-card h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; margin-bottom: 14px; }
-.service-card p { color: var(--muted); line-height: 1.7; font-size: 15px; margin-bottom: 24px; }
-.feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 10px; }
-.check-icon { flex-shrink: 0; }
+    /* ── Buttons ── */
+    .gold-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      border: none;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
 
-/* ── Why Altius ── */
-.why-section {
-  padding: 100px 0;
-  background: linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
-  position: relative;
-}
-.why-dots {
-  position: absolute; inset: 0; opacity: 0.03;
-  background-image: radial-gradient(var(--gold) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
-.why-card {
-  padding: 36px;
-  background: rgba(30, 48, 84, 0.27);
-  border-radius: 14px;
-  border: 1px solid rgba(138, 155, 181, 0.07);
-  transition: border-color 0.3s, transform 0.3s;
-}
-.why-card:hover { border-color: rgba(200, 150, 62, 0.2); transform: translateY(-3px); }
-.why-icon-wrap {
-  margin-bottom: 20px; width: 52px; height: 52px;
-  background: rgba(200, 150, 62, 0.07); border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-}
-.why-card h4 { font-size: 20px; font-weight: 600; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
-.why-card p { color: var(--muted); line-height: 1.7; font-size: 15px; }
+    .gold-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200, 150, 62, 0.27);
+    }
 
-/* ── Process ── */
-.process { padding: 100px 0; background: var(--deep); }
-.process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
-.process-item { text-align: center; }
-.process-num {
-  font-size: 48px; font-weight: 700; font-family: 'Playfair Display', serif;
-  color: rgba(200, 150, 62, 0.13); margin-bottom: 16px;
-}
-.process-item h4 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
-.process-item p { color: var(--muted); line-height: 1.7; font-size: 14px; }
+    .outline-btn {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid rgba(200, 150, 62, 0.33);
+      padding: 13px 30px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
 
-/* ── About ── */
-.about {
-  padding: 100px 0;
-  background: linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
-}
-.about-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 60px; align-items: center;
-}
-.about-tag { margin-bottom: 12px; }
-.about h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 700; margin-bottom: 24px; line-height: 1.2;
-}
-.about p { color: var(--muted); line-height: 1.8; font-size: 16px; margin-bottom: 20px; }
-.about-features { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
-.about-feature-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,0.87); }
+    .outline-btn:hover {
+      border-color: var(--gold);
+      background: rgba(200, 150, 62, 0.07);
+    }
 
-.testimonial-card {
-  background: linear-gradient(145deg, rgba(30, 48, 84, 0.4), rgba(11, 29, 58, 0.53));
-  border-radius: 20px; padding: 40px;
-  border: 1px solid rgba(138, 155, 181, 0.08);
-}
-.testimonial-quote {
-  font-family: 'Playfair Display', serif; font-size: 52px;
-  color: rgba(200, 150, 62, 0.2); line-height: 1; margin-bottom: 16px;
-}
-.testimonial-card blockquote {
-  font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.87);
-  font-style: italic; margin-bottom: 28px;
-}
-.testimonial-footer { border-top: 1px solid rgba(138, 155, 181, 0.13); padding-top: 20px; }
-.testimonial-footer strong { font-weight: 600; font-size: 15px; display: block; }
-.testimonial-footer span { color: var(--muted); font-size: 13px; margin-top: 4px; display: block; }
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: all 0.4s;
+      padding: 20px 0;
+    }
 
-/* ── CTA Banner ── */
-.cta-banner {
-  padding: 80px 0;
-  background: linear-gradient(135deg, rgba(200, 150, 62, 0.09), rgba(200, 150, 62, 0.03));
-  border-top: 1px solid rgba(200, 150, 62, 0.13);
-  border-bottom: 1px solid rgba(200, 150, 62, 0.13);
-  text-align: center;
-}
-.cta-banner h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 3.5vw, 38px);
-  font-weight: 700; margin-bottom: 16px;
-}
-.cta-banner p { color: var(--muted); font-size: 17px; max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+    nav.scrolled {
+      background: rgba(6, 20, 40, 0.93);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(138, 155, 181, 0.08);
+      padding: 12px 0;
+    }
 
-/* ── Contact ── */
-.contact { padding: 100px 0; background: var(--deep); }
-.contact-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px;
-}
-.contact h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 700; margin-bottom: 20px;
-}
-.contact-intro { color: var(--muted); line-height: 1.8; font-size: 16px; margin-bottom: 40px; }
-.contact-detail { margin-bottom: 24px; }
-.contact-detail-label {
-  font-size: 12px; letter-spacing: 1.5px; color: var(--gold);
-  font-weight: 600; margin-bottom: 4px; text-transform: uppercase;
-}
-.contact-detail-value { font-size: 16px; color: rgba(255,255,255,0.8); }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.form-card {
-  background: rgba(30, 48, 84, 0.27);
-  border-radius: 16px; padding: 40px;
-  border: 1px solid rgba(138, 155, 181, 0.08);
-}
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
-.form-group { margin-bottom: 0; }
-.form-group.full { margin-bottom: 24px; }
-.form-label {
-  font-size: 12px; letter-spacing: 1px; color: var(--muted);
-  display: block; margin-bottom: 6px; text-transform: uppercase;
-}
-input, textarea {
-  width: 100%; padding: 14px 18px;
-  background: rgba(30, 48, 84, 0.53);
-  border: 1.5px solid rgba(138, 155, 181, 0.2);
-  border-radius: 6px; color: var(--white);
-  font-size: 15px; font-family: 'DM Sans', sans-serif;
-  transition: border-color 0.3s; outline: none;
-}
-input:focus, textarea:focus { border-color: var(--gold); }
-input::placeholder, textarea::placeholder { color: rgba(138, 155, 181, 0.53); }
-textarea { resize: vertical; min-height: 100px; }
-.form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 14px; }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+    }
 
-.form-success {
-  background: rgba(30, 48, 84, 0.4); border-radius: 16px; padding: 60px;
-  text-align: center; border: 1px solid rgba(200, 150, 62, 0.2); display: none;
-}
-.form-success.show { display: block; }
-.form-success-icon {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: rgba(200, 150, 62, 0.13);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 24px;
-}
-.form-success h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 12px; }
-.form-success p { color: var(--muted); line-height: 1.7; }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 20;
+      color: var(--navy);
+    }
 
-/* ── Footer ── */
-footer {
-  padding: 48px 0 32px; background: var(--deep);
-  border-top: 1px solid rgba(138, 155, 181, 0.07);
-}
-.footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-.footer-logo { display: flex; align-items: center; gap: 10px; }
-.footer-logo-icon {
-  width: 30px; height: 30px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 5px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700; font-size: 16px; color: var(--navy);
-}
-.footer-logo span { font-weight: 600; font-size: 14px; letter-spacing: 1.5px; }
-.footer-links { display: flex; gap: 28px; }
-.footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
-.footer-links a:hover { color: var(--gold); }
-.footer-bottom {
-  border-top: 1px solid rgba(138, 155, 181, 0.07); margin-top: 28px; padding-top: 24px;
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-}
-.footer-bottom span:first-child { font-size: 13px; color: var(--muted); }
-.footer-bottom span:last-child { font-size: 13px; color: rgba(138, 155, 181, 0.53); }
-</style>
+    .nav-logo-text span:first-child {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      display: block;
+    }
+
+    .nav-logo-text span:last-child {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-top: -2px;
+      display: block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      padding: 10px 24px !important;
+      font-size: 13px !important;
+    }
+
+    /* Mobile menu */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      margin: 5px 0;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(6, 20, 40, 0.97);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+
+      .nav-links,
+      .nav-cta-wrap {
+        display: none !important;
+      }
+
+      .hamburger {
+        display: block;
+        z-index: 101;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, var(--deep) 0%, var(--navy) 40%, var(--slate) 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        repeating-linear-gradient(90deg, var(--white) 0, var(--white) 1px, transparent 1px, transparent 5.5%),
+        repeating-linear-gradient(0deg, var(--white) 0, var(--white) 1px, transparent 1px, transparent 9%);
+    }
+
+    .hero-line-left {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 1px;
+      height: 40%;
+      background: linear-gradient(to bottom, transparent, rgba(200, 150, 62, 0.27), transparent);
+    }
+
+    .hero-line-right {
+      position: absolute;
+      bottom: 0;
+      right: 15%;
+      width: 1px;
+      height: 35%;
+      background: linear-gradient(to top, transparent, rgba(200, 150, 62, 0.2), transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: 120px;
+      padding-bottom: 80px;
+    }
+
+    .hero-inner {
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200, 150, 62, 0.08);
+      border: 1px solid rgba(200, 150, 62, 0.2);
+      border-radius: 50px;
+      padding: 8px 20px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5.5vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .hero-shimmer {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    .hero p {
+      font-size: 19px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 44px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 80px;
+      background: rgba(138, 155, 181, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stat-item {
+      background: rgba(11, 29, 58, 0.8);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 640px) {
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── Section Headers ── */
+    .section-tag {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Services ── */
+    .services {
+      padding: 100px 0;
+      background: var(--deep);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: linear-gradient(160deg, rgba(30, 48, 84, 0.53), rgba(11, 29, 58, 0.6));
+      border: 1px solid rgba(138, 155, 181, 0.09);
+      border-radius: 16px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(200, 150, 62, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .service-card-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(200, 150, 62, 0.4), transparent);
+    }
+
+    .service-icon {
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+    }
+
+    /* ── Why Altius ── */
+    .why-section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
+      position: relative;
+    }
+
+    .why-dots {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: radial-gradient(var(--gold) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .why-card {
+      padding: 36px;
+      background: rgba(30, 48, 84, 0.27);
+      border-radius: 14px;
+      border: 1px solid rgba(138, 155, 181, 0.07);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .why-card:hover {
+      border-color: rgba(200, 150, 62, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .why-icon-wrap {
+      margin-bottom: 20px;
+      width: 52px;
+      height: 52px;
+      background: rgba(200, 150, 62, 0.07);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-card h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── Process ── */
+    .process {
+      padding: 100px 0;
+      background: var(--deep);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+    }
+
+    .process-item {
+      text-align: center;
+    }
+
+    .process-num {
+      font-size: 48px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: rgba(200, 150, 62, 0.13);
+      margin-bottom: 16px;
+    }
+
+    .process-item h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .process-item p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ── About ── */
+    .about {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-tag {
+      margin-bottom: 12px;
+    }
+
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .about p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .about-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.87);
+    }
+
+    .testimonial-card {
+      background: linear-gradient(145deg, rgba(30, 48, 84, 0.4), rgba(11, 29, 58, 0.53));
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(138, 155, 181, 0.08);
+    }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      color: rgba(200, 150, 62, 0.2);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.87);
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .testimonial-footer {
+      border-top: 1px solid rgba(138, 155, 181, 0.13);
+      padding-top: 20px;
+    }
+
+    .testimonial-footer strong {
+      font-weight: 600;
+      font-size: 15px;
+      display: block;
+    }
+
+    .testimonial-footer span {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      padding: 80px 0;
+      background: linear-gradient(135deg, rgba(200, 150, 62, 0.09), rgba(200, 150, 62, 0.03));
+      border-top: 1px solid rgba(200, 150, 62, 0.13);
+      border-bottom: 1px solid rgba(200, 150, 62, 0.13);
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding: 100px 0;
+      background: var(--deep);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 60px;
+    }
+
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .contact-intro {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .contact-detail {
+      margin-bottom: 24px;
+    }
+
+    .contact-detail-label {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .contact-detail-value {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-card {
+      background: rgba(30, 48, 84, 0.27);
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid rgba(138, 155, 181, 0.08);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 500px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-group.full {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(30, 48, 84, 0.53);
+      border: 1.5px solid rgba(138, 155, 181, 0.2);
+      border-radius: 6px;
+      color: var(--white);
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--gold);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(138, 155, 181, 0.53);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .form-success {
+      background: rgba(30, 48, 84, 0.4);
+      border-radius: 16px;
+      padding: 60px;
+      text-align: center;
+      border: 1px solid rgba(200, 150, 62, 0.2);
+      display: none;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(200, 150, 62, 0.13);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .form-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 0 32px;
+      background: var(--deep);
+      border-top: 1px solid rgba(138, 155, 181, 0.07);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--navy);
+    }
+
+    .footer-logo span {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(138, 155, 181, 0.07);
+      margin-top: 28px;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom span:first-child {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-bottom span:last-child {
+      font-size: 13px;
+      color: rgba(138, 155, 181, 0.53);
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ═══ NAVIGATION ═══ -->
-<nav id="mainNav">
-  <div class="container nav-inner">
-    <a class="nav-logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-      <div class="nav-logo-icon">A</div>
-      <div class="nav-logo-text">
-        <span>ALTIUS</span>
-        <span>TECHNOLOGIES</span>
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav id="mainNav">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+        <div class="nav-logo-icon">A</div>
+        <div class="nav-logo-text">
+          <span>ALTIUS</span>
+          <span>TECHNOLOGIES</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a class="nav-link" href="#services">Services</a>
+          <a class="nav-link" href="#why">Why Altius</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </div>
+        <div class="nav-cta-wrap">
+          <a class="gold-btn nav-cta" href="#contact">Get Free Assessment</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </a>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a class="nav-link" href="#services">Services</a>
-        <a class="nav-link" href="#why">Why Altius</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#contact">Contact</a>
-      </div>
-      <div class="nav-cta-wrap">
-        <a class="gold-btn nav-cta" href="#contact">Get Free Assessment</a>
-      </div>
-      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#why" onclick="closeMobile()">Why Altius</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a class="gold-btn" href="#contact" onclick="closeMobile()" style="margin-top:16px;">Get Free Assessment</a>
   </div>
-</nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="#why" onclick="closeMobile()">Why Altius</a>
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a class="gold-btn" href="#contact" onclick="closeMobile()" style="margin-top:16px;">Get Free Assessment</a>
-</div>
-
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-line-left"></div>
-  <div class="hero-line-right"></div>
-  <div class="container hero-content">
-    <div class="hero-inner">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Trusted by Title Companies Since 1995
-      </div>
-      <h1>
-        Title Plant Indexing<br>
-        <span class="hero-shimmer">Precision. Speed. Scale.</span>
-      </h1>
-      <p>30 years of domain expertise, 100+ seasoned professionals, and AI-powered workflows — delivering the accuracy and turnaround your title operations demand.</p>
-      <div class="hero-buttons">
-        <a class="gold-btn" href="#contact">
-          Request Free Assessment
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="outline-btn" href="#services">Explore Services</a>
-      </div>
-    </div>
-
-    <div class="stats-strip">
-      <div class="stat-item">
-        <div class="stat-num" data-target="30" data-suffix="+">0</div>
-        <div class="stat-label">Years in Business</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="100" data-suffix="+">0</div>
-        <div class="stat-label">Domain Experts</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="99" data-suffix=".7%">0</div>
-        <div class="stat-label">Accuracy Rate</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="50" data-suffix="M+">0</div>
-        <div class="stat-label">Documents Processed</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SERVICES ═══ -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;margin-bottom:64px;">
-      <div class="section-tag">Our Services</div>
-      <h2 class="section-title">End-to-End Title Plant Solutions</h2>
-      <p class="section-desc">From traditional indexing to AI-driven automation, we cover every aspect of your title plant data operations.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="service-card fade-in">
-        <div class="service-card-line"></div>
-        <div class="service-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="22" height="28" rx="3" stroke="#C8963E" stroke-width="2"/><path d="M10 14h10M10 19h10M10 24h6" stroke="#C8963E" stroke-width="1.5" stroke-linecap="round"/><rect x="18" y="10" width="18" height="24" rx="3" fill="#0B1D3A" stroke="#C8963E" stroke-width="2"/><path d="M24 18h6M24 23h6M24 28h3" stroke="#E8B960" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-line-left"></div>
+    <div class="hero-line-right"></div>
+    <div class="container hero-content">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Trusted by Title Companies Since 1995
         </div>
-        <h3>Title Plant Indexing</h3>
-        <p>Comprehensive document indexing for deeds, mortgages, liens, judgments, and UCCs with county-specific protocols and multi-jurisdictional expertise.</p>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Deed &amp; Mortgage Indexing</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Lien &amp; Judgment Tracking</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>UCC Filing Management</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>County Protocol Compliance</div>
-      </div>
-
-      <div class="service-card fade-in" data-delay="0.15">
-        <div class="service-card-line"></div>
-        <div class="service-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="12" rx="14" ry="5" stroke="#C8963E" stroke-width="2"/><path d="M6 12v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8" stroke="#C8963E" stroke-width="2"/><path d="M6 20v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8" stroke="#C8963E" stroke-width="2"/><circle cx="30" cy="28" r="6" fill="#0B1D3A" stroke="#E8B960" stroke-width="2"/><path d="M28 28l1.5 1.5L32 27" stroke="#E8B960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h1>
+          Title Plant Indexing<br>
+          <span class="hero-shimmer">Precision. Speed. Scale.</span>
+        </h1>
+        <p>30 years of domain expertise, 100+ seasoned professionals, and AI-powered workflows — delivering the accuracy
+          and turnaround your title operations demand.</p>
+        <div class="hero-buttons">
+          <a class="gold-btn" href="#contact">
+            Request Free Assessment
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a class="outline-btn" href="#services">Explore Services</a>
         </div>
-        <h3>High-Precision Data Capture</h3>
-        <p>99.7% accuracy on complex document data extraction — legal descriptions, grantor/grantee parsing, and recording information with full QA workflows.</p>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Legal Description Extraction</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Grantor/Grantee Parsing</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Recording Data Capture</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Multi-Tier QA Process</div>
       </div>
 
-      <div class="service-card fade-in" data-delay="0.3">
-        <div class="service-card-line"></div>
-        <div class="service-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#C8963E" stroke-width="2"/><circle cx="20" cy="20" r="5" fill="#C8963E" opacity="0.3"/><circle cx="20" cy="20" r="2" fill="#C8963E"/><path d="M20 6v6M20 28v6M6 20h6M28 20h6M10 10l4.5 4.5M25.5 25.5L30 30M30 10l-4.5 4.5M14.5 25.5L10 30" stroke="#C8963E" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="stats-strip">
+        <div class="stat-item">
+          <div class="stat-num" data-target="30" data-suffix="+">0</div>
+          <div class="stat-label">Years in Business</div>
         </div>
-        <h3>AI Process Optimization</h3>
-        <p>Leverage our AI expertise to identify bottlenecks, automate repetitive tasks, and transform your document processing pipeline for 3-5x throughput gains.</p>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Workflow Automation</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Intelligent Document Classification</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anomaly Detection</div>
-        <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom AI Model Training</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ WHY ALTIUS ═══ -->
-<section class="why-section" id="why">
-  <div class="why-dots"></div>
-  <div class="container" style="position:relative;">
-    <div class="fade-in" style="text-align:center;margin-bottom:64px;">
-      <div class="section-tag">Why Altius</div>
-      <h2 class="section-title">The Altius Advantage</h2>
-      <p class="section-desc">What sets us apart in the title plant services industry.</p>
-    </div>
-    <div class="why-grid">
-
-      <div class="why-card fade-in">
-        <div class="why-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L4 7v7c0 6.07 4.28 11.73 10 13 5.72-1.27 10-6.93 10-13V7L14 3z" stroke="#C8963E" stroke-width="1.8"/><path d="M10 14l2.5 2.5L18 11" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="stat-item">
+          <div class="stat-num" data-target="100" data-suffix="+">0</div>
+          <div class="stat-label">Domain Experts</div>
         </div>
-        <h4>99.7% Accuracy</h4>
-        <p>Multi-tier quality assurance with senior reviewer sign-off on every batch. Your data integrity is non-negotiable.</p>
-      </div>
-
-      <div class="why-card fade-in" data-delay="0.12">
-        <div class="why-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="#C8963E" stroke-width="1.8"/><path d="M14 8v6l4 3" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="stat-item">
+          <div class="stat-num" data-target="99" data-suffix=".7%">0</div>
+          <div class="stat-label">Accuracy Rate</div>
         </div>
-        <h4>30 Years Deep</h4>
-        <p>Three decades of title plant domain expertise means we understand the nuances that generalist BPOs miss.</p>
-      </div>
-
-      <div class="why-card fade-in" data-delay="0.24">
-        <div class="why-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="10" cy="10" r="4" stroke="#C8963E" stroke-width="1.8"/><circle cx="20" cy="10" r="3" stroke="#C8963E" stroke-width="1.5"/><path d="M3 24c0-4.42 3.58-8 7-8s7 3.58 7 8" stroke="#C8963E" stroke-width="1.8"/><path d="M19 16c2.76 0 5 2.69 5 6" stroke="#C8963E" stroke-width="1.5"/></svg>
+        <div class="stat-item">
+          <div class="stat-num" data-target="50" data-suffix="M+">0</div>
+          <div class="stat-label">Documents Processed</div>
         </div>
-        <h4>100+ Experts</h4>
-        <p>Our team averages 10+ years of experience in title plant indexing and document processing.</p>
-      </div>
-
-      <div class="why-card fade-in" data-delay="0.36">
-        <div class="why-icon-wrap">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v20M6 10l8-6 8 6" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10l4 8h-8zM20 10l4 8h-8z" stroke="#C8963E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h4>Scale On Demand</h4>
-        <p>Ramp capacity up or down within days. Handle county backlog surges without the hiring headache.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<section class="process">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;margin-bottom:64px;">
-      <div class="section-tag">How It Works</div>
-      <h2 class="section-title">Getting Started Is Simple</h2>
-    </div>
-    <div class="process-grid">
-      <div class="process-item fade-in">
-        <div class="process-num">01</div>
-        <h4>Free Assessment</h4>
-        <p>We analyze a sample of your documents and provide a detailed accuracy benchmark and capacity plan.</p>
-      </div>
-      <div class="process-item fade-in" data-delay="0.1">
-        <div class="process-num">02</div>
-        <h4>Pilot Program</h4>
-        <p>Start with a small batch. Compare our output quality and turnaround against your current process.</p>
-      </div>
-      <div class="process-item fade-in" data-delay="0.2">
-        <div class="process-num">03</div>
-        <h4>Scale &amp; Optimize</h4>
-        <p>Once validated, we ramp to full volume and continuously optimize with AI-assisted quality checks.</p>
-      </div>
-      <div class="process-item fade-in" data-delay="0.3">
-        <div class="process-num">04</div>
-        <h4>Ongoing Partnership</h4>
-        <p>Dedicated account management, SLA-backed delivery, and regular process improvement reviews.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ ABOUT ═══ -->
-<section class="about" id="about">
-  <div class="container">
-    <div class="about-grid">
+  <!-- ═══ SERVICES ═══ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="fade-in" style="text-align:center;margin-bottom:64px;">
+        <div class="section-tag">Our Services</div>
+        <h2 class="section-title">End-to-End Title Plant Solutions</h2>
+        <p class="section-desc">From traditional indexing to AI-driven automation, we cover every aspect of your title
+          plant data operations.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card fade-in">
+          <div class="service-card-line"></div>
+          <div class="service-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect x="4" y="6" width="22" height="28" rx="3" stroke="#C8963E" stroke-width="2" />
+              <path d="M10 14h10M10 19h10M10 24h6" stroke="#C8963E" stroke-width="1.5" stroke-linecap="round" />
+              <rect x="18" y="10" width="18" height="24" rx="3" fill="#0B1D3A" stroke="#C8963E" stroke-width="2" />
+              <path d="M24 18h6M24 23h6M24 28h3" stroke="#E8B960" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Title Plant Indexing</h3>
+          <p>Comprehensive document indexing for deeds, mortgages, liens, judgments, and UCCs with county-specific
+            protocols and multi-jurisdictional expertise.</p>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Deed &amp; Mortgage Indexing</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Lien &amp; Judgment Tracking</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>UCC Filing Management</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>County Protocol Compliance</div>
+        </div>
+
+        <div class="service-card fade-in" data-delay="0.15">
+          <div class="service-card-line"></div>
+          <div class="service-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <ellipse cx="20" cy="12" rx="14" ry="5" stroke="#C8963E" stroke-width="2" />
+              <path d="M6 12v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8" stroke="#C8963E" stroke-width="2" />
+              <path d="M6 20v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8" stroke="#C8963E" stroke-width="2" />
+              <circle cx="30" cy="28" r="6" fill="#0B1D3A" stroke="#E8B960" stroke-width="2" />
+              <path d="M28 28l1.5 1.5L32 27" stroke="#E8B960" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>High-Precision Data Capture</h3>
+          <p>99.7% accuracy on complex document data extraction — legal descriptions, grantor/grantee parsing, and
+            recording information with full QA workflows.</p>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Legal Description Extraction</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Grantor/Grantee Parsing</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Recording Data Capture</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Multi-Tier QA Process</div>
+        </div>
+
+        <div class="service-card fade-in" data-delay="0.3">
+          <div class="service-card-line"></div>
+          <div class="service-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="14" stroke="#C8963E" stroke-width="2" />
+              <circle cx="20" cy="20" r="5" fill="#C8963E" opacity="0.3" />
+              <circle cx="20" cy="20" r="2" fill="#C8963E" />
+              <path d="M20 6v6M20 28v6M6 20h6M28 20h6M10 10l4.5 4.5M25.5 25.5L30 30M30 10l-4.5 4.5M14.5 25.5L10 30"
+                stroke="#C8963E" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>AI Process Optimization</h3>
+          <p>Leverage our AI expertise to identify bottlenecks, automate repetitive tasks, and transform your document
+            processing pipeline for 3-5x throughput gains.</p>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Workflow Automation</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Intelligent Document Classification</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Anomaly Detection</div>
+          <div class="feature-item"><svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>Custom AI Model Training</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY ALTIUS ═══ -->
+  <section class="why-section" id="why">
+    <div class="why-dots"></div>
+    <div class="container" style="position:relative;">
+      <div class="fade-in" style="text-align:center;margin-bottom:64px;">
+        <div class="section-tag">Why Altius</div>
+        <h2 class="section-title">The Altius Advantage</h2>
+        <p class="section-desc">What sets us apart in the title plant services industry.</p>
+      </div>
+      <div class="why-grid">
+
+        <div class="why-card fade-in">
+          <div class="why-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 3L4 7v7c0 6.07 4.28 11.73 10 13 5.72-1.27 10-6.93 10-13V7L14 3z" stroke="#C8963E"
+                stroke-width="1.8" />
+              <path d="M10 14l2.5 2.5L18 11" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>99.7% Accuracy</h4>
+          <p>Multi-tier quality assurance with senior reviewer sign-off on every batch. Your data integrity is
+            non-negotiable.</p>
+        </div>
+
+        <div class="why-card fade-in" data-delay="0.12">
+          <div class="why-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="11" stroke="#C8963E" stroke-width="1.8" />
+              <path d="M14 8v6l4 3" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h4>30 Years Deep</h4>
+          <p>Three decades of title plant domain expertise means we understand the nuances that generalist BPOs miss.
+          </p>
+        </div>
+
+        <div class="why-card fade-in" data-delay="0.24">
+          <div class="why-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="10" r="4" stroke="#C8963E" stroke-width="1.8" />
+              <circle cx="20" cy="10" r="3" stroke="#C8963E" stroke-width="1.5" />
+              <path d="M3 24c0-4.42 3.58-8 7-8s7 3.58 7 8" stroke="#C8963E" stroke-width="1.8" />
+              <path d="M19 16c2.76 0 5 2.69 5 6" stroke="#C8963E" stroke-width="1.5" />
+            </svg>
+          </div>
+          <h4>100+ Experts</h4>
+          <p>Our team averages 10+ years of experience in title plant indexing and document processing.</p>
+        </div>
+
+        <div class="why-card fade-in" data-delay="0.36">
+          <div class="why-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 4v20M6 10l8-6 8 6" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M4 10l4 8h-8zM20 10l4 8h-8z" stroke="#C8963E" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h4>Scale On Demand</h4>
+          <p>Ramp capacity up or down within days. Handle county backlog surges without the hiring headache.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ═══ -->
+  <section class="process">
+    <div class="container">
+      <div class="fade-in" style="text-align:center;margin-bottom:64px;">
+        <div class="section-tag">How It Works</div>
+        <h2 class="section-title">Getting Started Is Simple</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-item fade-in">
+          <div class="process-num">01</div>
+          <h4>Free Assessment</h4>
+          <p>We analyze a sample of your documents and provide a detailed accuracy benchmark and capacity plan.</p>
+        </div>
+        <div class="process-item fade-in" data-delay="0.1">
+          <div class="process-num">02</div>
+          <h4>Pilot Program</h4>
+          <p>Start with a small batch. Compare our output quality and turnaround against your current process.</p>
+        </div>
+        <div class="process-item fade-in" data-delay="0.2">
+          <div class="process-num">03</div>
+          <h4>Scale &amp; Optimize</h4>
+          <p>Once validated, we ramp to full volume and continuously optimize with AI-assisted quality checks.</p>
+        </div>
+        <div class="process-item fade-in" data-delay="0.3">
+          <div class="process-num">04</div>
+          <h4>Ongoing Partnership</h4>
+          <p>Dedicated account management, SLA-backed delivery, and regular process improvement reviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="fade-in">
+          <div class="section-tag about-tag">About Us</div>
+          <h2>Three Decades of<br>Title Plant Excellence</h2>
+          <p>Altius Technologies is a specialist KPO built exclusively around the title and real estate closing
+            industry. Since 1995, we've served title plants, title insurance underwriters, and abstractors with
+            high-precision indexing and data capture services.</p>
+          <p>Today, we bring that same depth of domain expertise to AI-powered process optimization — helping title
+            companies modernize their operations without sacrificing the accuracy standards the industry demands.</p>
+          <div class="about-features">
+            <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>SOC 2 compliant data handling</div>
+            <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>Dedicated teams per client for consistency</div>
+            <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>US time-zone account management</div>
+            <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>AI + human hybrid quality assurance</div>
+          </div>
+        </div>
+        <div class="fade-in" data-delay="0.2">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">&ldquo;</div>
+            <blockquote>When our county recording backlog doubled overnight, Altius scaled their team in under a week.
+              Three years later, they're still our primary indexing partner — accuracy hasn't dropped below 99.5% once.
+            </blockquote>
+            <div class="testimonial-footer">
+              <strong>VP of Operations</strong>
+              <span>Regional Title Plant Company, Texas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANNER ═══ -->
+  <section class="cta-banner">
+    <div class="container">
       <div class="fade-in">
-        <div class="section-tag about-tag">About Us</div>
-        <h2>Three Decades of<br>Title Plant Excellence</h2>
-        <p>Altius Technologies is a specialist KPO built exclusively around the title and real estate closing industry. Since 1995, we've served title plants, title insurance underwriters, and abstractors with high-precision indexing and data capture services.</p>
-        <p>Today, we bring that same depth of domain expertise to AI-powered process optimization — helping title companies modernize their operations without sacrificing the accuracy standards the industry demands.</p>
-        <div class="about-features">
-          <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>SOC 2 compliant data handling</div>
-          <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated teams per client for consistency</div>
-          <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>US time-zone account management</div>
-          <div class="about-feature-item"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3.5 3.5L15 7" stroke="#C8963E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>AI + human hybrid quality assurance</div>
-        </div>
+        <h2>Ready to Improve Your Title Plant Operations?</h2>
+        <p>Send us a sample batch — we'll index it free and show you the Altius difference.</p>
+        <a class="gold-btn" href="#contact" style="font-size:16px;padding:16px 40px;">Get Your Free Assessment</a>
       </div>
-      <div class="fade-in" data-delay="0.2">
-        <div class="testimonial-card">
-          <div class="testimonial-quote">&ldquo;</div>
-          <blockquote>When our county recording backlog doubled overnight, Altius scaled their team in under a week. Three years later, they're still our primary indexing partner — accuracy hasn't dropped below 99.5% once.</blockquote>
-          <div class="testimonial-footer">
-            <strong>VP of Operations</strong>
-            <span>Regional Title Plant Company, Texas</span>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="fade-in">
+          <div class="section-tag">Contact Us</div>
+          <h2>Let's Talk About<br>Your Requirements</h2>
+          <p class="contact-intro">Whether you need to outsource your entire indexing operation or optimize a specific
+            workflow with AI, we're here to help. Fill out the form and our team will respond within one business day.
+          </p>
+          <div class="contact-detail">
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">info@accuratebackoffice.com</div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-label">US Office Hours</div>
+            <div class="contact-detail-value">Mon–Fri, 8AM–6PM EST</div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-label">Headquarters</div>
+            <div class="contact-detail-value">Coimbatore, India</div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ CTA BANNER ═══ -->
-<section class="cta-banner">
-  <div class="container">
-    <div class="fade-in">
-      <h2>Ready to Improve Your Title Plant Operations?</h2>
-      <p>Send us a sample batch — we'll index it free and show you the Altius difference.</p>
-      <a class="gold-btn" href="#contact" style="font-size:16px;padding:16px 40px;">Get Your Free Assessment</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT ═══ -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="fade-in">
-        <div class="section-tag">Contact Us</div>
-        <h2>Let's Talk About<br>Your Requirements</h2>
-        <p class="contact-intro">Whether you need to outsource your entire indexing operation or optimize a specific workflow with AI, we're here to help. Fill out the form and our team will respond within one business day.</p>
-        <div class="contact-detail">
-          <div class="contact-detail-label">Email</div>
-          <div class="contact-detail-value">info@altiustechnologies.com</div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-label">US Office Hours</div>
-          <div class="contact-detail-value">Mon–Fri, 8AM–6PM EST</div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-label">Headquarters</div>
-          <div class="contact-detail-value">Coimbatore, India</div>
-        </div>
-      </div>
-
-      <div class="fade-in" data-delay="0.15">
-        <div class="form-card" id="formCard">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Full Name *</label>
-              <input type="text" id="fname" placeholder="John Smith" required>
+        <div class="fade-in" data-delay="0.15">
+          <div class="form-card" id="formCard">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" id="fname" placeholder="John Smith" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Work Email *</label>
+                <input type="email" id="femail" placeholder="john@titleco.com" required>
+              </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Work Email *</label>
-              <input type="email" id="femail" placeholder="john@titleco.com" required>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Company *</label>
+                <input type="text" id="fcompany" placeholder="Your Title Company" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" id="fphone" placeholder="(555) 123-4567">
+              </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Company *</label>
-              <input type="text" id="fcompany" placeholder="Your Title Company" required>
+            <div class="form-group full">
+              <label class="form-label">How Can We Help?</label>
+              <textarea id="fmessage"
+                placeholder="Tell us about your current volume, document types, and what you're looking to improve..."></textarea>
             </div>
-            <div class="form-group">
-              <label class="form-label">Phone</label>
-              <input type="tel" id="fphone" placeholder="(555) 123-4567">
+            <button class="gold-btn" id="submitBtn" style="width:100%;">Submit Inquiry</button>
+            <p class="form-note">We typically respond within one business day. No obligation.</p>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M8 16l5.5 5.5L24 11" stroke="#C8963E" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
             </div>
+            <h3>Thank You!</h3>
+            <p>We've received your inquiry. Our team will get back to you within one business day.</p>
           </div>
-          <div class="form-group full">
-            <label class="form-label">How Can We Help?</label>
-            <textarea id="fmessage" placeholder="Tell us about your current volume, document types, and what you're looking to improve..."></textarea>
-          </div>
-          <button class="gold-btn" id="submitBtn" style="width:100%;">Submit Inquiry</button>
-          <p class="form-note">We typically respond within one business day. No obligation.</p>
         </div>
-        <div class="form-success" id="formSuccess">
-          <div class="form-success-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 16l5.5 5.5L24 11" stroke="#C8963E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Thank You!</h3>
-          <p>We've received your inquiry. Our team will get back to you within one business day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">A</div>
+          <span>ALTIUS TECHNOLOGIES</span>
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#why">Why Altius</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-logo">
-        <div class="footer-logo-icon">A</div>
-        <span>ALTIUS TECHNOLOGIES</span>
-      </div>
-      <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="#why">Why Altius</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Altius Technologies. All rights reserved.</span>
+        <span>Coimbatore, India &middot; Serving Title Companies Across the USA</span>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Altius Technologies. All rights reserved.</span>
-      <span>Coimbatore, India &middot; Serving Title Companies Across the USA</span>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-// ── Nav scroll effect ──
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+  <script>
+    // ── Nav scroll effect ──
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
 
-// ── Mobile menu ──
-const hamburger = document.getElementById('hamburgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-});
-function closeMobile() {
-  mobileMenu.classList.remove('open');
-}
-
-// ── Fade-in on scroll ──
-const fadeEls = document.querySelectorAll('.fade-in');
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const delay = entry.target.dataset.delay || 0;
-      entry.target.style.transitionDelay = delay + 's';
-      entry.target.classList.add('visible');
+    // ── Mobile menu ──
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
     }
-  });
-}, { threshold: 0.15 });
-fadeEls.forEach(el => fadeObserver.observe(el));
 
-// ── Animated counters ──
-const counters = document.querySelectorAll('.stat-num');
-let countersStarted = false;
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !countersStarted) {
-      countersStarted = true;
-      counters.forEach(counter => {
-        const target = parseInt(counter.dataset.target);
-        const suffix = counter.dataset.suffix || '';
-        const duration = 2000;
-        const start = Date.now();
-        function tick() {
-          const elapsed = Date.now() - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          counter.textContent = Math.floor(eased * target) + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
+    // ── Fade-in on scroll ──
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          entry.target.style.transitionDelay = delay + 's';
+          entry.target.classList.add('visible');
         }
-        tick();
       });
-    }
-  });
-}, { threshold: 0.3 });
-if (counters.length) statsObserver.observe(counters[0].closest('.stats-strip'));
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => fadeObserver.observe(el));
 
-// ── Form submission ──
-document.getElementById('submitBtn').addEventListener('click', () => {
-  const name = document.getElementById('fname').value.trim();
-  const email = document.getElementById('femail').value.trim();
-  const company = document.getElementById('fcompany').value.trim();
-  if (!name || !email || !company) {
-    alert('Please fill in Name, Email, and Company fields.');
-    return;
-  }
-  document.getElementById('formCard').style.display = 'none';
-  document.getElementById('formSuccess').classList.add('show');
-});
+    // ── Animated counters ──
+    const counters = document.querySelectorAll('.stat-num');
+    let countersStarted = false;
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersStarted) {
+          countersStarted = true;
+          counters.forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            const suffix = counter.dataset.suffix || '';
+            const duration = 2000;
+            const start = Date.now();
+            function tick() {
+              const elapsed = Date.now() - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              counter.textContent = Math.floor(eased * target) + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            tick();
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    if (counters.length) statsObserver.observe(counters[0].closest('.stats-strip'));
 
-// ── Smooth scroll for anchor links ──
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-</script>
+    // ── Form submission ──
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('submitBtn');
+      const name = document.getElementById('fname').value.trim();
+      const email = document.getElementById('femail').value.trim();
+      const company = document.getElementById('fcompany').value.trim();
+      const phone = document.getElementById('fphone').value.trim();
+      const message = document.getElementById('fmessage').value.trim();
+
+      if (!name || !email || !company) {
+        alert('Please fill in Name, Email, and Company fields.');
+        return;
+      }
+
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please provide a valid email address.');
+        return;
+      }
+
+      // UI Loading state
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, company, phone, message })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Success
+          document.getElementById('formCard').style.display = 'none';
+          document.getElementById('formSuccess').classList.add('show');
+        } else {
+          // Server error
+          alert(data.message || 'Something went wrong. Please try again.');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      } catch (error) {
+        // Network error
+        alert('Failed to send inquiry. Please check your connection and try again.');
+        console.error('Submission error:', error);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    // ── Smooth scroll for anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 
 </body>
+
 </html>
